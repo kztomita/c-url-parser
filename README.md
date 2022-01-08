@@ -20,7 +20,7 @@ In case of error, errno will be set.
 - EINVAL - Invalid URL was given.
 - ENOMEM - Insufficient memory available
 
-This function simply splits the URL into components. It does not perform strict validation of URLs. Invalid URL is also accepted.
+This function simply splits the URL into components. It does not perform strict validation of URLs. Invalid URL is also accepted. URL that only have path is also accepted.
 
 But it returns an error (EINVAL) in some cases.
 
