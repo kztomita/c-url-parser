@@ -37,7 +37,7 @@ struct test_case test_cases[] = {
 		  NULL,
 		 }},
 
-		/* Authority部分の解析テスト */
+		/* Parsing test of the authority part */
 		{"http://example.com:8080",
 		 0,
 		 {"http",
@@ -328,8 +328,8 @@ struct test_case test_cases[] = {
 		  "bar=baz",
 		  "qux",
 		 }},
-		/* 相対パスの最初のセグメント:を含めることはできない。
-		 * schemeとみなされる。
+		/* The first segment of a relative path cannot contain ':'.
+		 * It will be treated as scheme.
 		 * RFC3986 3.3 Path
 		 */
 		{"foo:ooo/bar",
@@ -341,7 +341,7 @@ struct test_case test_cases[] = {
 		  NULL,
 		  NULL,
 		 }},
-		/* 二番目以降のセグメントなら:を含めることができる */
+		/* We can include colon in the second or later segment. */
 		{"foo/ba:r",
 		 0,
 		 {NULL,
@@ -372,8 +372,8 @@ struct test_case test_cases[] = {
 		  NULL,
 		 }},
 
-		/* 変則的なURL */
-		{"//example.com",		/* without scheme */
+		/* Unusual URLs */
+		{"//example.com",	/* without scheme */
 		 0,
 		 {NULL,
 		  NULL, NULL,
