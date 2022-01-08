@@ -37,7 +37,9 @@ struct test_case test_cases[] = {
 		  NULL,
 		 }},
 
-		/* Parsing test of the authority part */
+		/*
+		 * Parsing tests of the authority part
+		 */
 		{"http://example.com:8080",
 		 0,
 		 {"http",
@@ -372,8 +374,11 @@ struct test_case test_cases[] = {
 		  NULL,
 		 }},
 
-		/* Unusual URLs */
-		{"//example.com",	/* without scheme */
+		/*
+		 * Unusual URLs
+		 */
+		/* without scheme */
+		{"//example.com",
 		 0,
 		 {NULL,
 		  NULL, NULL,
@@ -382,7 +387,8 @@ struct test_case test_cases[] = {
 		  NULL,
 		  NULL,
 		 }},
-		{"http:/foo/bar",	/* without authority */
+		/* scheme + path-absolute (without authority) */
+		{"http:/foo/bar",
 		 0,
 		 {"http",
 		  NULL, NULL,
@@ -391,13 +397,34 @@ struct test_case test_cases[] = {
 		  NULL,
 		  NULL,
 		 }},
-		{"http:foo/bar",	/* without authority */
+		/* scheme + path-rootless (without authority) */
+		{"http:foo/bar",
 		 0,
 		 {"http",
 		  NULL, NULL,
 		  NULL, -1,
 		  "foo/bar",
 		  NULL,
+		  NULL,
+		 }},
+		/* scheme + path-empty (without authority) */
+		{"http:",
+		 0,
+		 {"http",
+		  NULL, NULL,
+		  NULL, -1,
+		  NULL,
+		  NULL,
+		  NULL,
+		 }},
+		/* scheme + path-empty (without authority) */
+		{"http:?foo=bar",
+		 0,
+		 {"http",
+		  NULL, NULL,
+		  NULL, -1,
+		  NULL,
+		  "foo=bar",
 		  NULL,
 		 }},
 		{"://foo",
