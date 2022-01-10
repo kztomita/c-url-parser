@@ -24,7 +24,8 @@ This function simply splits the URL into components. It does not perform strict 
 
 But it returns an error (EINVAL) in some cases.
 
-- The host contains space, \r or \n.
+- URL contains control code(0x00-0x1f, 0x7f).
+- The hostname contains space.
 - The port number contains non-numeric characters.
 - The port number is out of range.
 

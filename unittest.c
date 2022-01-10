@@ -36,6 +36,24 @@ struct test_case test_cases[] = {
 		  NULL,
 		  NULL,
 		 }},
+		{"http://example.com/foo/%E3%83%86%E3%82%B9%E3%83%88",
+		 0,
+		 {"http",
+		  NULL, NULL,
+		  "example.com", -1,
+		  "/foo/%E3%83%86%E3%82%B9%E3%83%88",
+		  NULL,
+		  NULL,
+		 }},
+		{"http://example.com/foo bar",
+		 0,
+		 {"http",
+		  NULL, NULL,
+		  "example.com", -1,
+		  "/foo bar",
+		  NULL,
+		  NULL,
+		 }},
 
 		/*
 		 * Parsing tests of the authority part
@@ -453,10 +471,13 @@ struct test_case test_cases[] = {
 		{"http://foo[bar].com/",
 		 1,
 		 {}},
-		{"http://foo bar.com/",
+		{"http://foo bar.com/",		/* contain spaces in hostname */
 		 1,
 		 {}},
-		{"http://foo\r\nbar.com/",
+		{"http://foo\r\nbar.com/",	/* contain control codes */
+		 1,
+		 {}},
+		{"http://foo.com\x7f/",		/* contain control codes */
 		 1,
 		 {}},
 };

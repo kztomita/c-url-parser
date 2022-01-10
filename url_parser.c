@@ -85,6 +85,15 @@ static int is_digit(char c)
 	return 0;
 }
 
+static int is_control(char c)
+{
+	if ((c >= 0x00 && c <= 0x1f) ||
+	    c == 0x7f) {
+		return 1;
+	}
+	return 0;
+}
+
 static const char *lookup_scheme(const char *s)
 {
 	const char *p = s;
@@ -192,7 +201,7 @@ static int parse_authority(const char *s, size_t s_len, URL_COMPONENTS *c)
 			return -1;
 		}
 	}
-	if (find_chars(host_start, host_end - host_start, " \r\n")) {
+	if (find_chars(host_start, host_end - host_start, " ")) {
 		errno = EINVAL;
 		return -1;
 	}
@@ -256,6 +265,13 @@ URL_COMPONENTS *parse_url(const char *url)
 	const char *end = url + strlen(url);
 	const char *found;
 	size_t len;
+
+	for (p = url ; p < end ; p++) {
+		if (is_control(*p)) {
+			errno = EINVAL;
+			return NULL;
+		}
+	}
 
 	c = malloc(sizeof(URL_COMPONENTS));
 	if (!c) {
