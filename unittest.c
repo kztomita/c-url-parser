@@ -54,7 +54,7 @@ struct test_case test_cases[] = {
 		  NULL,
 		  NULL,
 		 }},
-		{"http://example.com/foo bar",
+		{"http://example.com/foo bar",	/* contain spaces in path */
 		 0,
 		 {"http",
 		  NULL, NULL,
