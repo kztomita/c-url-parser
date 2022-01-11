@@ -157,61 +157,61 @@ struct test_case test_cases[] = {
 		  NULL,
 		  NULL,
 		 }},
-		{"http://fe80::1/foo",		/*hostname + port */
+		{"http://2001:db8::1/foo",		/*hostname + port */
 		 0,
 		 {"http",
 		  NULL, NULL,
-		  "fe80:", 1,
+		  "2001:db8:", 1,
 		  "/foo",
 		  NULL,
 		  NULL,
 		 }},
-		{"http://[fe80::1]/foo",	/* IPv6 */
+		{"http://[2001:db8::1]/foo",	/* IPv6 */
 		 0,
 		 {"http",
 		  NULL, NULL,
-		  "[fe80::1]", -1,
+		  "[2001:db8::1]", -1,
 		  "/foo",
 		  NULL,
 		  NULL,
 		 }},
-		{"http://fe80::1:8080/foo",	/* hostname + port */
+		{"http://2001:db8::1:8080/foo",	/* hostname + port */
 		 0,
 		 {"http",
 		  NULL, NULL,
-		  "fe80::1", 8080,
+		  "2001:db8::1", 8080,
 		  "/foo",
 		  NULL,
 		  NULL,
 		 }},
-		{"http://[fe80::1]:8080/foo",	/* IPv6 + port */
+		{"http://[2001:db8::1]:8080/foo",	/* IPv6 + port */
 		 0,
 		 {"http",
 		  NULL, NULL,
-		  "[fe80::1]", 8080,
+		  "[2001:db8::1]", 8080,
 		  "/foo",
 		  NULL,
 		  NULL,
 		 }},
-		{"http://[fe80::1:8080]/foo",	/* IPv6 */
+		{"http://[2001:db8::1:8080]/foo",	/* IPv6 */
 		 0,
 		 {"http",
 		  NULL, NULL,
-		  "[fe80::1:8080]", -1,
+		  "[2001:db8::1:8080]", -1,
 		  "/foo",
 		  NULL,
 		  NULL,
 		 }},
-		{"http://[fe80::1:8080[/foo",	/* Invalid host */
+		{"http://[2001:db8::1:8080[/foo",	/* Invalid host */
 		 1,
 		 {}},
-		{"http://[fe80::1:8080/foo",	/* Invalid host */
+		{"http://[2001:db8::1:8080/foo",	/* Invalid host */
 		 1,
 		 {}},
-		{"http://[fe80::1:8080]aa/foo",	/* Invalid host */
+		{"http://[2001:db8::1:8080]aa/foo",	/* Invalid host */
 		 1,
 		 {}},
-		{"http://aa[fe80::1:8080]/foo",	/* Invalid host */
+		{"http://aa[2001:db8::1:8080]/foo",	/* Invalid host */
 		 1,
 		 {}},
 
