@@ -492,15 +492,15 @@ struct test_case test_cases[] = {
 };
 
 #define CMP_STRING(a, b, field, name) \
-	if (a->field == NULL && b->field) { \
-		printf(".%s NULL != %s\n", name, b->field); \
+	if ((a)->field == NULL && (b)->field) { \
+		printf(".%s NULL != %s\n", name, (b)->field); \
 		diff++; \
-	} else if (a->field && b->field == NULL) { \
-		printf(".%s %s != NULL\n", name, a->field); \
+	} else if ((a)->field && (b)->field == NULL) { \
+		printf(".%s %s != NULL\n", name, (a)->field); \
 		diff++; \
-	} else if (a->field && b->field) { \
-		if (strcmp(a->field, b->field)) { \
-			printf(".%s %s != %s\n", name, a->field, b->field); \
+	} else if ((a)->field && (b)->field) { \
+		if (strcmp((a)->field, (b)->field)) { \
+			printf(".%s %s != %s\n", name, (a)->field, (b)->field); \
 			diff++; \
 		} \
 	}
