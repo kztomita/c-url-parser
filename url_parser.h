@@ -8,7 +8,7 @@
 #ifndef URL_PARSER_H
 #define URL_PARSER_H
 
-#define URL_PARSER_VERSION  0x00000200	/* 0.0.2 */
+#define URL_PARSER_VERSION  0x00000300	/* 0.0.3 */
 
 typedef struct url_components {
 	char *scheme;
