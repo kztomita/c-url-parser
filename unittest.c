@@ -468,6 +468,9 @@ struct test_case test_cases[] = {
 		{"http://example.com:808080/",	/* invalid port */
 		 1,
 		 {}},
+		{"http://example.com:8888888888/", /* invalid port (over 32bit) */
+		 1,
+		 {}},
 		{"http://example.com:8080a/",	/* invalid port */
 		 1,
 		 {}},

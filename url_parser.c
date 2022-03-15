@@ -7,7 +7,6 @@
 
 #include "url_parser.h"
 #include <errno.h>
-#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -154,7 +153,7 @@ static int parse_authority(const char *s, size_t s_len, URL_COMPONENTS *c)
 {
 	const char *end = s + s_len;
 	const char *p, *found, *host_start, *host_end;
-	int value;
+	int port;
 
 	c->port = -1;
 
@@ -232,28 +231,31 @@ static int parse_authority(const char *s, size_t s_len, URL_COMPONENTS *c)
 
 	if (host_end + 1 < end) {
 		p = host_end + 1;
+		port = 0;
 		while (p < end) {
 			if (*p < '0' || *p > '9') {
 				errno = EINVAL;
 				return -1;
 			}
+
+			port = port * 10 + *p - '0';
+			if (port > 65535) {
+				errno = EINVAL;
+				return -1;
+			}
+
 			p++;
-		}
-		value = atoi(host_end + 1);
-		if (value < 0 || value > 65535) {
-			errno = EINVAL;
-			return -1;
 		}
 	} else {
 		/* empty port number */
-		value = -1;
+		port = -1;
 	}
 
 	c->host = strndup(host_start, (size_t) (host_end - host_start));
 	if (c->host == NULL) {
 		return -1;	/* ENOMEM */
 	}
-	c->port = value;
+	c->port = port;
 
 	return 0;
 }
